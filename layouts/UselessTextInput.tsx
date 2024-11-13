@@ -17,12 +17,12 @@ export default class UselessTextInput extends Component {
                         'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                accountName: this.state.accountName,
-                phone: this.state.phone,
+                "account_name": this.state.accountName,
+                "phone": this.state.phone,
             }),
         }).then((response) => response.json())
           .then((responseData) => {
-              console.log("responseData : " + responseData); // fetch response data
+              console.log("responseData : " + responseData.status); // fetch response data
           }).catch((error) => {
               console.log("error : " + error); // error
           });
