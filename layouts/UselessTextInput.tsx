@@ -5,22 +5,41 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 export default class UselessTextInput extends Component {
     constructor(props) {
         super(props);
-        this.state = { onChangeText1: "", onChangeText2: "" };
+        this.state = { accountName: "", phone: "" };
     }
-    buttonClickListener = () => { alert("Clicked On Button !!!" + " " + this.state.onChangeText1);}
+//    const [phone, accountName] = React.useState('Useless Text');
+    buttonClickListener = () => {
+        alert("Clicked On Button !!!" + " " + this.state.accountName);
+        fetch('https://tapi.cit-ekb.ru/api/login/SendPhoneCode/', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                        'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                accountName: this.state.accountName,
+                phone: this.state.phone,
+            }),
+        }).then((response) => response.json())
+          .then((responseData) => {
+              console.log("responseData : " + responseData); // fetch response data
+          }).catch((error) => {
+              console.log("error : " + error); // error
+          });
+    }
     render() {
        return (
             <SafeAreaProvider>
                 <SafeAreaView>
                     <TextInput
                         style={styles.input}
-                        onChangeText={(onChangeText1) => this.setState({onChangeText1})}
+                        onChangeText={(accountName) => this.setState({accountName})}
 
                     />
 
                     <TextInput
                         style={styles.input2}
-                        onChangeText={(onChangeText2) => this.setState({onChangeText2})}
+                        onChangeText={(phone) => this.setState({phone})}
 
                     />
                 </SafeAreaView>

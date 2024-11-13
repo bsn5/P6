@@ -12,9 +12,12 @@ const RegisterScreen = ({ navigation, route }) => {
     const [text, onChangeText] = React.useState('Useless Text');
     const [number, onChangeNumber] = React.useState('');
 
+/*
+    buttonClickListener = () => {
+        alert("Clicked On Button !!!" + " " + this.state.onChangeText1);
 
-    buttonClickListener = () => { alert("Clicked On Button !!!" + " " + this.state.onChangeText1);}
-
+    }
+*/
     return (
         <UselessTextInput prop1 = "1"/>
     );
